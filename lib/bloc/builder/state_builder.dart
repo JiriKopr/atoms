@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc.dart';
 
-typedef LoadedBuilder = Widget Function(
-    BuildContext context, LoadedState state);
+typedef LoadedBuilder<V> = Widget Function(
+    BuildContext context, LoadedState<V> state);
 
 typedef LoadingBuilder = Widget Function(
     BuildContext context, LoadingState state);
@@ -17,9 +17,9 @@ typedef ProcessingBuilder = Widget Function(
 /// Builder using the power of abstracted Bloc states
 /// Now there is no need to use long builder method
 /// with if statements checking the type of state
-class StatesBuilder<C extends Cubit<S>, S extends BaseState>
+class StatesBuilder<C extends Cubit<S>, S extends BaseState<V>, V>
     extends BlocBuilderBase<C, S> {
-  final LoadedBuilder loadedBuilder;
+  final LoadedBuilder<V> loadedBuilder;
   final LoadingBuilder loadingBuilder;
   final ErrorBuilder errorBuilder;
   final ProcessingBuilder processingBuilder;
