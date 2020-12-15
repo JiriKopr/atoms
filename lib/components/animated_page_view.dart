@@ -36,12 +36,16 @@ class AnimatedPageView extends StatelessWidget {
   final PageController pageViewController;
   final PageViewAnimatedBuilder builder;
   final int itemCount;
+  final Axis scrollDirection;
+  final void Function(int) onPageChanged;
 
   const AnimatedPageView({
     Key key,
     @required this.pageViewController,
     @required this.builder,
     @required this.itemCount,
+    @required this.scrollDirection,
+    @required this.onPageChanged,
   }) : super(key: key);
 
   @override
@@ -49,6 +53,8 @@ class AnimatedPageView extends StatelessWidget {
     return PageView.builder(
       controller: pageViewController,
       itemCount: itemCount,
+      scrollDirection: scrollDirection,
+      onPageChanged: onPageChanged,
       itemBuilder: (context, index) {
         return AnimatedBuilder(
           animation: pageViewController,
